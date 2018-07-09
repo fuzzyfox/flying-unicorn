@@ -5,7 +5,7 @@ namespace App\Policies;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class TeamPolicy extends BasePolicy
+class UserPolicy extends BasePolicy
 {
-    protected $slug_prefix = 'user.';
+    protected $slug_prefix = 'users.';
 }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests;
 
-use App\Team;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UpdateTeam extends JsonRequest
+class UpdateUser extends JsonRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +14,7 @@ class UpdateTeam extends JsonRequest
      */
     public function authorize()
     {
-        return $this->user()->can('teams.update', $this->route('team'));
+        return $this->user()->can('users.update', $this->route('user'));
     }
 
     /**
@@ -26,15 +26,14 @@ class UpdateTeam extends JsonRequest
     {
         $required = $this->method() === 'PATCH' ? 'nullable' : 'required';
         return [
-            'name' => [
+            'name' => "{$required}|string",
+            'email' => [
                 $required,
-                'string',
-                Rule::unique('teams')->ignore($this->route('team')->id),
-                'max:70',
+                'email',
+                Rule::unique('users')->ignore($this->route('user')->id),
             ],
-            'description' => 'nullable|string',
-            'user_id'     => 'nullable|exists:users,id',
-            'restricted'  => 'nullable|boolean',
+            'password' => 'nullable|confirmed',
+            'is_super' => 'nullable|boolean',
         ];
     }
 }

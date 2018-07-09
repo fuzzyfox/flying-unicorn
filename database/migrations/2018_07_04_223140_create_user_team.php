@@ -19,7 +19,10 @@ class CreateUserTeam extends Migration
             $table->integer('weight')->nullable();
 
             $table->timestamp('approved')->nullable();
+            $table->uuid('approved_by')->nullable();
+
             $table->timestamp('rejected')->nullable();
+            $table->uuid('rejected_by')->nullable();
             $table->text('rejected_reason')->nullable();
 
             $table->timestamps();
@@ -29,6 +32,10 @@ class CreateUserTeam extends Migration
             $table->foreign('user_id')->references('id')->on('users')
                 ->onDelete('cascade');
             $table->foreign('team_id')->references('id')->on('teams')
+                ->onDelete('cascade');
+            $table->foreign('approved_by')->references('id')->on('users')
+                ->onDelete('cascade');
+            $table->foreign('rejected_by')->references('id')->on('users')
                 ->onDelete('cascade');
         });
     }

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreTeam extends JsonRequest
+class StoreUser extends JsonRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class StoreTeam extends JsonRequest
      */
     public function authorize()
     {
-        return $this->user()->can('team.store', \App\Team::class);
+        return $this->users()->can('users.store', \App\User::class);
     }
 
     /**
@@ -24,10 +24,10 @@ class StoreTeam extends JsonRequest
     public function rules()
     {
         return [
-            'name'        => 'required|string|unique:teams,name|max:70',
-            'description' => 'nullable|string',
-            'user_id'     => 'nullable|exists:users,id',
-            'restricted'  => 'nullable|boolean',
+            'name' => 'required|string',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'nullable|confirmed',
+            'is_super' => 'nullable|boolean',
         ];
     }
 }

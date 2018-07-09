@@ -8,5 +8,5 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class TeamPolicy extends BasePolicy
 {
-    protected $slug_prefix = 'team.';
+    protected $slug_prefix = 'teams.';
 }

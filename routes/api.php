@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
-Route::group(['middleware' => ['auth:api']], function () {
-    Route::apiResource('teams', 'API\TeamController');
+Route::namespace('API')->middleware('auth:api')->group(function ($request) {
+  Route::apiResource('users', 'UserController');
+  Route::apiResource('teams', 'TeamController');
 });
