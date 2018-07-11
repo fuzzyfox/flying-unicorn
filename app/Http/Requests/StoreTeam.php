@@ -13,7 +13,7 @@ class StoreTeam extends JsonRequest
      */
     public function authorize()
     {
-        return $this->user()->can('team.store', \App\Team::class);
+        return $this->user()->can('teams.store', \App\Team::class);
     }
 
     /**

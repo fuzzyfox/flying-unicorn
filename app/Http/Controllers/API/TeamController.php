@@ -103,7 +103,7 @@ class TeamController extends Controller
      */
     public function destroy(Team $team)
     {
-        $this->authorize('teams.destroy', Team::class);
+        $this->authorize('teams.destroy', $team);
 
         $team->delete();
 

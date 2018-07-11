@@ -101,7 +101,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $this->authorize('users.destroy', User::class);
+        $this->authorize('users.destroy', $user);
 
         $user->delete();
 
