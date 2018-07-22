@@ -52,7 +52,7 @@ class AdditionalFieldController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, AdditionalField $additional_field)
     {
         //
     }
@@ -63,8 +63,12 @@ class AdditionalFieldController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(AdditionalField $additional_field)
     {
-        //
+        $this->authorize('additional-fields.destroy', $additional_field);
+
+        $additional_field->delete();
+
+        return response('', 204);
     }
 }
