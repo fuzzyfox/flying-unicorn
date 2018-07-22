@@ -59,6 +59,8 @@ class UserController extends Controller
     {
         $this->authorize('users.show', $user);
 
+        $user->setAdditionalField('has_tshirt', true);
+
         return new UserResource($user);
     }
 

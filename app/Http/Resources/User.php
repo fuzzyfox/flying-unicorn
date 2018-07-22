@@ -2,8 +2,6 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
-
 class User extends JsonResource
 {
     /**
@@ -23,6 +21,8 @@ class User extends JsonResource
         if ($request->user()->can('users.show.email', $this->resource)) {
             $rtn['email'] = (string)$this->email;
         }
+
+        $this->mergeAdditionalFields($request, $rtn, 'users');
 
         $rtn = array_merge($rtn, [
             'created_at' => (string)$this->created_at,

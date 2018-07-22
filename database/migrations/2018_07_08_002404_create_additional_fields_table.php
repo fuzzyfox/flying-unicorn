@@ -20,6 +20,7 @@ class CreateAdditionalFieldsTable extends Migration
             $table->string('entity');
             $table->string('validator')->default('nullable');
             $table->string('permissions_slug')->nullable();
+            $table->json('default')->nullable();
 
             $table->string('label');
             $table->text('description')->nullable();
@@ -27,21 +28,22 @@ class CreateAdditionalFieldsTable extends Migration
             $table->timestamps();
 
             $table->uuid('created_by')->nullable();
-            $table->uuid('updated_by')->nullable();
 
             $table->primary('id');
             $table->unique(['key', 'type', 'entity']);
 
             $table->foreign('created_by')->references('id')->on('users')
                 ->onDelete('set null');
-            $table->foreign('updated_by')->references('id')->on('users')
-                ->onDelete('set null');
         });
 
         Schema::create('additional_field_values', function (Blueprint $table) {
+            $table->uuid('id');
             $table->uuid('additional_field_id');
             $table->uuid('entity_id');
             $table->json('value')->nullable();
+
+            $table->primary('id');
+            $table->unique(['additional_field_id', 'entity_id']);
 
             $table->foreign('additional_field_id')->references('id')->on('additional_fields')
                 ->onDelete('cascade');

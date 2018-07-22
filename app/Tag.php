@@ -5,7 +5,7 @@ namespace App;
 use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Model;
 
-class Tags extends Model
+class Tag extends Model
 {
     use Uuids;
 

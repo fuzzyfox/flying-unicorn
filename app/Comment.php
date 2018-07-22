@@ -5,7 +5,7 @@ namespace App;
 use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Model;
 
-class Comments extends Model
+class Comment extends Model
 {
     use Uuids;
 
@@ -21,10 +21,10 @@ class Comments extends Model
     }
 
     public function comments() {
-        return $this->morphMany('App\Comment', 'commentable');
+        return $this->morphMany(static::class, 'commentable');
     }
 
     public function tags() {
-        return $this->morphMany('App\Tag', 'tagable');
+        return $this->morphMany(Tag::class, 'tagable');
     }
 }

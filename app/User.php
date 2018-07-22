@@ -3,13 +3,14 @@
 namespace App;
 
 use App\Traits\Uuids;
+use App\Traits\AdditionalFields;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Uuids, HasApiTokens, Notifiable;
+    use Uuids, HasApiTokens, Notifiable, AdditionalFields;
 
     /**
      * Indicates if the IDs are auto-incrementing.
@@ -35,6 +36,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['additional_fields'];
 
     /**
      * Get teams the user leads
@@ -80,6 +88,7 @@ class User extends Authenticatable
         if ($this->is_super) {
             return true;
         }
+
         if ($this->permissions()->where('slug', $slug)->first()) {
             return true;
         }
@@ -97,6 +106,7 @@ class User extends Authenticatable
         if ($this->is_super) {
             return true;
         }
+
         return !! $this->roles()
             ->where('id', $search)
             ->orWhere('name', $search)

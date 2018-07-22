@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use App\Http\Resources\User as UserResource;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 class Team extends JsonResource
 {
@@ -28,6 +27,8 @@ class Team extends JsonResource
         if ($request->user()->can('teams.show.applications', $this->resource)) {
             $rtn['applications'] = UserResource::collection($this->applications);
         }
+
+        $this->mergeAdditionalFields($request, $rtn, 'teams');
 
         $rtn = array_merge($rtn, [
             'created_at'   => (string)$this->created_at,

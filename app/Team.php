@@ -3,11 +3,12 @@
 namespace App;
 
 use App\Traits\Uuids;
+use App\Traits\AdditionalFields;
 use Illuminate\Database\Eloquent\Model;
 
 class Team extends Model
 {
-    use Uuids;
+    use Uuids, AdditionalFields;
 
     /**
      * Indicates if the IDs are auto-incrementing.

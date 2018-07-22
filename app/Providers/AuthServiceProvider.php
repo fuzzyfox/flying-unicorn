@@ -14,11 +14,12 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Permission' => 'App\Policies\PermissionPolicy',
-        'App\Role'       => 'App\Policies\RolePolicy',
-        'App\Team'       => 'App\Policies\TeamPolicy',
-        'App\User'       => 'App\Policies\UserPolicy',
-        'App\Shift'       => 'App\Policies\UserPolicy',
+        \App\AdditionalField::class => \App\Policies\AdditionalFieldPolicy::class,
+        \App\Permission::class      => \App\Policies\PermissionPolicy::class,
+        \App\Role::class            => \App\Policies\RolePolicy::class,
+        \App\Team::class            => \App\Policies\TeamPolicy::class,
+        \App\User::class            => \App\Policies\UserPolicy::class,
+        \App\Shift::class           => \App\Policies\UserPolicy::class,
     ];
 
     /**

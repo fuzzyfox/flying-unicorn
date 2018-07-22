@@ -11,13 +11,7 @@ class UserShift extends Pivot
      *
      * @var array
      */
-    protected $fillable = [
-        'confirmed',
-        'approved',
-        'approved_by',
-        'checkin',
-        'checkin_by'
-    ];
+    protected $fillable = [];
 
     public function comments() {
         return $this->morphMany('App\Comment', 'commentable');

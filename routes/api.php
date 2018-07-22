@@ -21,4 +21,5 @@ Route::namespace('API')->middleware('auth:api')->group(function ($request) {
   Route::apiResource('users', 'UserController');
   Route::apiResource('teams', 'TeamController');
   Route::apiResource('shifts', 'ShiftController');
+  Route::apiResource('additional-fields', 'AdditionalFieldController');
 });
