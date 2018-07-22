@@ -3,11 +3,12 @@
 namespace App;
 
 use App\Traits\Uuids;
+use App\Traits\AdditionalFields;
 use Illuminate\Database\Eloquent\Model;
 
 class Location extends Model
 {
-    use Uuids;
+    use Uuids, AdditionalFields;
 
     /**
      * Indicates if the IDs are auto-incrementing.
@@ -27,14 +28,14 @@ class Location extends Model
     ];
 
     public function shifts() {
-        return $this->hasMany('App\Shift');
+        return $this->hasMany(Shift::class);
     }
 
     public function comments() {
-        return $this->morphMany('App\Comment', 'commentable');
+        return $this->morphMany(Comment::class, 'commentable');
     }
 
     public function tags() {
-        return $this->morphMany('App\Tag', 'tagable');
+        return $this->morphMany(Tag::class, 'tagable');
     }
 }

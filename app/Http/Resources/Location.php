@@ -12,13 +12,14 @@ class Location extends JsonResource
      */
     public function toArray($request)
     {
-        $rtn = [];
+        $rtn = [
+            'id'           => (string)$this->id,
+            'name'         => (string)$this->name,
+            'description'  => (string)$this->description,
+        ];
 
         $this->mergeAdditionalFields($request, $rtn, 'locations');
 
-        $rtn = array_merge($rtn, [
-            'created_at'   => (string)$this->created_at,
-            'updated_at'   => (string)$this->updated_at,
-        ]);
+        return $rtn;
     }
 }
