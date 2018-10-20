@@ -50,7 +50,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'username' => 'required|string|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'claim_code' => 'required|string|exists:users',
         ]);
@@ -66,11 +66,10 @@ class RegisterController extends Controller
     {
         $user = User::where([
             ['claim_code', '=', $data['claim_code']],
-            ['email', '=', "{$data['claim_code']}@localhost"],
             ['password', '=', null],
         ])->first();
 
-        $user->email = $data['email'];
+        $user->username = $data['username'];
         $user->name = $data['name'];
         $user->password = Hash::make($data['password']);
         $user->save();

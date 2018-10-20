@@ -27,9 +27,9 @@ class UpdateUser extends JsonRequest
         $required = $this->method() === 'PATCH' ? 'nullable' : 'required';
         return [
             'name' => "{$required}|string",
-            'email' => [
+            'username' => [
                 $required,
-                'email',
+                'string',
                 Rule::unique('users')->ignore($this->route('user')->id),
             ],
             'password' => 'nullable|confirmed',

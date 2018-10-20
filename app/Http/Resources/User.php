@@ -19,12 +19,9 @@ class User extends JsonResource
         $rtn = [
             'id'         => (string)$this->id,
             'name'       => (string)$this->name,
+            'username'   => (string)$this->username,
             'is_super'   => (bool)$this->is_super,
         ];
-
-        if ($request->user()->can('users.show.email', $this->resource)) {
-            $rtn['email'] = (string)$this->email;
-        }
 
         if ($request->user()->can('users.show.teams.status', $this->resource)) {
             $rtn['teams'] = UserTeamResource::collection($this->teams);

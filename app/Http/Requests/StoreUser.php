@@ -25,7 +25,7 @@ class StoreUser extends JsonRequest
     {
         return [
             'name' => 'required|string',
-            'email' => 'required|email|unique:users,email',
+            'username' => 'required|unique:users,email',
             'password' => 'nullable|confirmed',
             'is_super' => 'nullable|boolean',
         ];
