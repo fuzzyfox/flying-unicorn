@@ -18,9 +18,18 @@ use Illuminate\Http\Request;
 // });
 
 Route::namespace('API')->middleware('auth:api')->group(function ($request) {
+    Route::get('users/me', function(Request $request) {
+        return redirect('api/users/' . $request->user()->id);
+    });
+
+    Route::post('teams/{team}/members', 'TeamController@storeMember');
+    Route::put('teams/{team}/members/{user}', 'TeamController@updateMember');
+    Route::delete('teams/{team}/members/{user}', 'TeamController@destroyMember');
+
   Route::apiResource('users', 'UserController');
   Route::apiResource('teams', 'TeamController');
   Route::apiResource('shifts', 'ShiftController');
   Route::apiResource('locations', 'LocationController');
   Route::apiResource('additional-fields', 'AdditionalFieldController');
+  Route::apiResource('donotdisturbs', 'DoNotDisturbController');
 });

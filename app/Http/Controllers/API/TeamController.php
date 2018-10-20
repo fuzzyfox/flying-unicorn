@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Team;
+use App\User;
 use App\Http\Resources\Team as TeamResource;
 use App\Http\Requests\StoreTeam as StoreTeamRequest;
 use App\Http\Requests\UpdateTeam as UpdateTeamRequest;
@@ -106,6 +107,57 @@ class TeamController extends Controller
         $this->authorize('teams.destroy', $team);
 
         $team->delete();
+
+        return response('', 204);
+    }
+
+    public function storeMember(Request $request, Team $team) {
+        $user = \App\User::find($request->input('user_id'));
+
+        if (!$user) {
+            return response('User not found', 404);
+        }
+
+        $status = [
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
+
+        if (!$team->restricted) {
+            $status = array_merge($status, [
+                'approved' => now()
+            ]);
+        }
+
+        if ($request->user()->can('teams.update')) {
+            $status = array_merge($status, [
+                'approved' => now(),
+                'approved_by' => $request->user()->id,
+            ]);
+
+            $team->members()->attach(
+                $user,
+                $status
+            );
+
+            response(new TeamResource($team->fresh()), 201);
+        }
+
+        $this->authorize('teams.store.member', $team);
+
+        $team->members()->attach(
+            $user,
+            $status
+        );
+
+        return response(new TeamResource($team->fresh()), 201);
+    }
+
+    public function destroyMember(Request $requrst, Team $team, User $user)
+    {
+        $this->authorize('teams.destroy.member', $team);
+
+        $user->teams()->detach($team);
 
         return response('', 204);
     }

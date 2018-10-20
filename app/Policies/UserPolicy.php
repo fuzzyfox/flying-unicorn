@@ -4,5 +4,5 @@ namespace App\Policies;
 
 class UserPolicy extends BasePolicy
 {
-    protected $slug_prefix = 'users.';
+    protected $slug_prefix = '';
 }

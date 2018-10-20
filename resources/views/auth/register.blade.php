@@ -61,6 +61,20 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="claim_code" class="col-md-4 col-form-label text-md-right">{{ __('Claim Code') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="claim_code" type="claim_code" class="form-control{{ $errors->has('claim_code') ? ' is-invalid' : '' }}" name="claim_code" value="{{ old('claim_code') }}" required>
+
+                                @if ($errors->has('claim_code'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('claim_code') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

@@ -18,7 +18,10 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password')->nullable();
-            $table->boolean('is_super')->default('false');
+
+            $table->boolean('is_super')->default(false);
+
+            $table->string('claim_code')->nullable();
 
             $table->rememberToken();
 

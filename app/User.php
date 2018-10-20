@@ -42,7 +42,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $appends = ['additional_fields'];
+    protected $appends = ['additional_fields', 'donotdisturbs'];
 
     /**
      * Get teams the user leads
@@ -66,6 +66,10 @@ class User extends Authenticatable
             ->withPivot('confirmed')
             ->where('approved', '<>', null)
             ->as('status');
+    }
+
+    public function donotdisturbs() {
+        return $this->hasMany(DoNotDisturb::class);;
     }
 
     public function roles() {

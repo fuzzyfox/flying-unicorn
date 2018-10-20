@@ -4,5 +4,5 @@ namespace App\Policies;
 
 class AdditionalFieldPolicy extends BasePolicy
 {
-    protected $slug_prefix = 'additional-fields.';
+    protected $slug_prefix = '';
 }

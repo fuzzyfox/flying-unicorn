@@ -101,7 +101,7 @@ class ShiftController extends Controller
     {
         $this->authorize('shifts.destroy', $shift);
 
-        $user->delete();
+        $shift->delete();
 
         return response('', 204);
     }

@@ -2,6 +2,10 @@
 
 namespace App\Http\Resources;
 
+
+use App\Http\Resources\UserTeam as UserTeamResource;
+use App\Http\Resources\DoNotDisturb as DoNotDisturbResource;
+
 class User extends JsonResource
 {
     /**
@@ -21,6 +25,15 @@ class User extends JsonResource
         if ($request->user()->can('users.show.email', $this->resource)) {
             $rtn['email'] = (string)$this->email;
         }
+
+        if ($request->user()->can('users.show.teams.status', $this->resource)) {
+            $rtn['teams'] = UserTeamResource::collection($this->teams);
+        }
+
+        if ($request->user()->can('users.show.donotdisturbs', $this->resource)) {
+            $rtn['dnds'] = DoNotDisturbResource::collection($this->donotdisturbs);
+        }
+
 
         $this->mergeAdditionalFields($request, $rtn, 'users');
 

@@ -16,6 +16,10 @@ class Role extends Model
      */
     public $incrementing = false;
 
+    public $timestamps = false;
+
+    public $fillable = ['name', 'description'];
+
     public function permissions() {
         return $this->morphMany('App\Permission', 'entity');
     }

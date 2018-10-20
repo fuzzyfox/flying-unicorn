@@ -16,6 +16,8 @@ class Permission extends Model
      */
     public $incrementing = false;
 
+    public $fillable = ['slug'];
+
     public function entity() {
         return $this->morphTo();
     }

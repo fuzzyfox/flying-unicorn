@@ -25,35 +25,43 @@ class BasePolicy
         $user = $params[0];
         $model = isset($params[1]) ? $params[1] : null;
 
-        if ($model && $user->id === $model->user_id) {
-            if ($user->permissions()->where([
-                ['slug', 'own.' . $this->slug_prefix . $method],
-                ['slug', 'likel', 'own.' . $this->slug_prefix . $method . '.%'],
-            ])->first()) {
+        if ($model && ($user->id === $model->user_id || (get_class($model) == 'App\User' && $user->id == $model->id))) {
+            if (
+                $user->permissions()
+                    ->where('slug', 'own.' . $this->slug_prefix . $method)
+                    ->orWhere('slug', 'like', 'own.' . $this->slug_prefix . $method . '.%')
+                    ->first()
+            ) {
                 return true;
             }
 
             foreach($user->roles as $role) {
-                if ($role->permissions()->where([
-                    ['slug', 'own.' . $this->slug_prefix . $method],
-                    ['slug', 'like', 'own.' . $this->slug_prefix . $method . '.%'],
-                ])->first()) {
+                if (
+                    $role->permissions()
+                        ->where('slug', 'own.' . $this->slug_prefix . $method)
+                        ->orWhere('slug', 'like', 'own.' . $this->slug_prefix . $method . '.%')
+                        ->first()
+                ) {
                     return true;
                 }
             }
         }
 
-        if ($user->permissions()->where([
-            ['slug', $this->slug_prefix . $method],
-            ['slug', 'like', $this->slug_prefix . $method . '.%'],
-        ])->first()) {
+        if (
+            $user->permissions()
+                ->where('slug', $this->slug_prefix . $method)
+                ->orWhere('slug', 'like', $this->slug_prefix . $method . '.%')
+                ->first()
+        ) {
             return true;
         }
         foreach($user->roles as $role) {
-            if ($role->permissions()->where([
-                ['slug', $this->slug_prefix . $method],
-                ['slug', 'like', $this->slug_prefix . $method . '.%'],
-            ])->first()) {
+            if (
+                $role->permissions()
+                    ->where('slug', $this->slug_prefix . $method)
+                    ->orWhere('slug', 'like', $this->slug_prefix . $method . '.%')
+                    ->first()
+            ) {
                 return true;
             }
         }

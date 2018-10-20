@@ -11,5 +11,18 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+mix.js(['resources/assets/js/app.js'], 'public/js')
+   .sass('resources/assets/sass/app.scss', 'public/css')
+   .extract(['vue', 'vuex', 'vue-router', 'axios', 'lodash']);
+
+mix.version();
+mix.sourceMaps();
+
+mix.webpackConfig({
+    resolve: {
+        extensions: ['.js', '.vue', '.json'],
+        alias: {
+            '@': __dirname + '/resources/assets/js'
+        },
+    },
+})

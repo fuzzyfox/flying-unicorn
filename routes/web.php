@@ -12,9 +12,26 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('home');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/calendar/{user}.ics', 'CalendarController@show');
+
+Route::middleware('auth')->group(function() {
+    Route::prefix('/user')->group(function() {
+        Route::view('/donotdisturb', 'user.donotdisturb')->name('user.donotdisturb');
+    });
+
+    Route::prefix('/teams')->group(function() {
+        Route::view('/', 'teams.index')->name('teams.view');
+    });
+
+    Route::prefix('/admin')->group(function() {
+        Route::view('/', 'admin.dashboard');
+        Route::view('/roles', 'admin.roles');
+    });
+});
