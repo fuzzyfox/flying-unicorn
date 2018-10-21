@@ -28,7 +28,9 @@ export default {
                 })
         },
         canJoinTeam(team) {
-            return !team.restricted && !this.user.teams.find(({id}) => id === team.id)
+            return !team.restricted &&
+                !this.user.teams.find(({id}) => id === team.id) &&
+                team.user_id !== this.user.id
         },
         canLeaveTeam(team) {
             return this.user.teams.find(({id}) => id === team.id)

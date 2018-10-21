@@ -65,7 +65,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $user = User::where([
-            ['claim_code', '=', $data['claim_code']],
+            ['claim_code', '=', trim(strtoupper($data['claim_code']))],
             ['password', '=', null],
         ])->first();
 
