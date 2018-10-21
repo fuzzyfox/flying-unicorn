@@ -19,6 +19,7 @@
                     <b-badge v-if="getUserTeamObj(team) && getUserTeamObj.status == 'pending'" variant="secondary">Pending</b-badge>
                     <b-btn v-if="canLeaveTeam(team)" @click.prevent="leaveTeam(team)" variant="danger">Leave Team</b-btn>
                     <b-badge v-if="team.restricted">restricted</b-badge>
+                    <b-badge v-if="team.user_id === user.id" variant="success">team lead</b-badge>
                 </b-card>
             </div>
         </div>
