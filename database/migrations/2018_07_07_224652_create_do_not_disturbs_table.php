@@ -16,8 +16,8 @@ class CreateDoNotDisturbsTable extends Migration
         Schema::create('do_not_disturbs', function (Blueprint $table) {
             $table->uuid('id');
             $table->uuid('user_id');
-            $table->timestamp('start_time');
-            $table->timestamp('end_time');
+            $table->timestamp('start_time')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('end_time')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->text('reason')->nullable();
 
             $table->primary('id');

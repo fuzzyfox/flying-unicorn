@@ -27,7 +27,7 @@ class CreateFlagsTable extends Migration
             $table->string('flaggable_type');
             $table->uuid('flaggable_id');
             $table->uuid('flag_id');
-            $table->timestamp('flagged_at');
+            $table->timestamp('flagged_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->uuid('flagged_by')->nullable();
 
             $table->primary(['flaggable_type', 'flaggable_id', 'flag_id']);

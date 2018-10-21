@@ -25,8 +25,8 @@ class CreateShiftsTable extends Migration
             $table->integer('max')->nullable();
             $table->integer('desired')->default(2);
 
-            $table->timestamp('start_time');
-            $table->timestamp('end_time');
+            $table->timestamp('start_time')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('end_time')->default(DB::raw('CURRENT_TIMESTAMP'));
 
             $table->timestamps();
 
