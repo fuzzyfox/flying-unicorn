@@ -65,7 +65,7 @@
                             <label for="claim_code" class="col-md-4 col-form-label text-md-right">{{ __('Claim Code') }}</label>
 
                             <div class="col-md-6">
-                                <input id="claim_code" type="claim_code" class="form-control{{ $errors->has('claim_code') ? ' is-invalid' : '' }}" name="claim_code" value="{{ old('claim_code') }}" required>
+                                <input id="claim_code" value="{{ app('request')->input('claim_code') }}" type="claim_code" class="form-control{{ $errors->has('claim_code') ? ' is-invalid' : '' }}" name="claim_code" value="{{ old('claim_code') }}" required>
 
                                 @if ($errors->has('claim_code'))
                                     <span class="invalid-feedback" role="alert">
