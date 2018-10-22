@@ -59,7 +59,7 @@
                 events: this.events,
                 eventRender(info) {
                     const contentEl = info.el.querySelector('.fc-content')
-                    const {description, location} = info.event
+                    const {description, location} = info.event.extendedProps
 
                     if (description) {
                         const descEl = document.createElement('div')
