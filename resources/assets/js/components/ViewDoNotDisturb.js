@@ -37,6 +37,17 @@ export default {
                 selectable: true
             }))
         },
+        shifts() {
+            return this.user.shifts.map(e => ({
+                start: e.start_time,
+                end: e.end_time,
+                title: e.name || undefined,
+                description: e.description || undefined,
+                location: e.location ? {...e.location} : undefined,
+                selectable: false,
+                editable: false,
+            }))
+        },
         events() {
             return this.newEvent ? [this.newEvent, ...this.dnds] : this.dnds
         }

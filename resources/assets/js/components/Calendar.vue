@@ -56,7 +56,25 @@
                 select: this.onSelect,
                 unselect: this.onUnselect,
                 eventClick: this.onEventClick,
-                events: this.events
+                events: this.events,
+                eventRender(info) {
+                    const contentEl = info.el.querySelector('.fc-content')
+                    const {description, location} = info.event
+
+                    if (description) {
+                        const descEl = document.createElement('div')
+                        descEl.classList.add('fc-description')
+                        descEl.textContent = description
+                        contentEl.appendChild(descEl)
+                    }
+
+                    if (location) {
+                        const locEl = document.createElement('div')
+                        locEl.classList.add('fc-location')
+                        locEl.textContent = location.name
+                        contentEl.appendChild(locEl)
+                    }
+                }
             })
             this.calendar.render();
         },

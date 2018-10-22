@@ -23,7 +23,9 @@ export default {
             const shifts = this.user.shifts.map(e => ({
                 start: e.start_time,
                 end: e.end_time,
-                title: e.name || undefined
+                title: e.name || undefined,
+                description: e.description || undefined,
+                location: e.location ? {...e.location} : undefined,
             }))
             return [...dnds, ...shifts]
         }

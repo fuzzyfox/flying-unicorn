@@ -18,3 +18,16 @@
 
 [v-cloak] > * { display:none }
 [v-cloak]::before { content: "loading…" }
+
+
+.fc-title {
+    font-weight: bold;
+}
+
+.fc-location {
+    font-style: italic;
+
+    &::before {
+        content: '📍 '
+    }
+}
