@@ -10,16 +10,6 @@ use \Eluceo\iCal\Component\Event;
 class CalendarController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
@@ -29,18 +19,34 @@ class CalendarController extends Controller
         $cal = new Calendar('-//CALENDAR//EVENTS//EN');
         $cal->setMethod('PUBLISH');
 
-        $user->donotdisturbs->each(function($dnd) use (&$cal) {
+        $user->donotdisturbs->each(function($dnd) use (&$cal, &$user) {
             $event = new Event();
             $event
                 ->setUniqueId($dnd->id)
                 ->setDtStart(new \DateTime($dnd->start))
                 ->setDtEnd(new \DateTime($dnd->end))
-                ->setSummary($dnd->reason ?? 'Do Not Disturb');
+                ->setSummary($dnd->reason ?? 'Do Not Disturb')
+                // ->setOrganizer($user->name)
+                ->setSequence(strtotime($dnd->updated_at));
+            $cal->addComponent($event);
+        });
+
+        $user->shifts->each(function($shift) use (&$cal) {
+            $event = new Event();
+            $event
+                ->setUniqueId($shift->id)
+                ->setDtStart(new \DateTime($shift->start))
+                ->setDtEnd(new \DateTime($shift->end))
+                ->setSummary($shift->name)
+                ->setDescription($shift->description . '\n\nShift Lead: ' . $shift->user->name)
+                // ->setOrganizer($shift->user->name)
+                ->setLocation($shift->location->name ?? 'Ravensbourne')
+                ->setSequence(strtotime($shift->updated_at));
             $cal->addComponent($event);
         });
 
         return response($cal->render())
             ->header('Content-Type', 'text/calendar; charset=utf-8')
-            ->header('Content-Disposition', 'attachment; filename="'.$user->id.'.ics"');
+            ->header('Content-Disposition', 'inline; filename="'.$user->id.'.ics"');
     }
 }
