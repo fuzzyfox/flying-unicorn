@@ -24,7 +24,7 @@ class Location extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'description',
+        'name', 'description','location_id'
     ];
 
     public function shifts() {
