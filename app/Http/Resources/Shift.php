@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\User as UserResource;
+use App\Http\Resources\Team as TeamResource;
 use App\Http\Resources\Location as LocationResource;
 
 class Shift extends JsonResource
