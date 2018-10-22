@@ -140,7 +140,7 @@ class TeamController extends Controller
                 $status
             );
 
-            response(new TeamResource($team->fresh()), 201);
+            return response(new TeamResource($team->fresh()), 201);
         }
 
         $this->authorize('teams.store.member', $team);

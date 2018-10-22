@@ -105,4 +105,35 @@ class ShiftController extends Controller
 
         return response('', 204);
     }
+
+    public function storeUser(Request $request, Shift $shift) {
+        $this->authorize('shifts.store.user', $shift);
+
+        $user = \App\User::find($request->input('user_id'));
+
+        if (!$user) {
+            return response('User not found', 404);
+        }
+
+        $shift->users()->attach(
+            $user,
+            [
+                'approved' => now(),
+                'approved_by' => $request->input('user_id')
+            ]
+        );
+        $shift->save();
+
+        return response(new ShiftResource($shift->fresh()), 201);
+    }
+
+    public function destroyUser(Request $requrst, Shfit $shift, User $user)
+    {
+        $this->authorize('shifts.destroy.user', $shift);
+
+        $shift->users()->detach($user);
+        $shift->save();
+
+        return response('', 204);
+    }
 }
