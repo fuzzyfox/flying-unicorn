@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\Location as LocationResource;
 
 class ShiftShallow extends JsonResource
 {
