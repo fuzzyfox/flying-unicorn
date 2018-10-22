@@ -16,7 +16,7 @@ class ShiftController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $this->authorize('shifts.index', Shift::class);
 
