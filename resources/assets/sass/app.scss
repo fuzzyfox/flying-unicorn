@@ -49,21 +49,31 @@
 }
 
 .fc-user {
+  display: none;
   font-style: italic;
 
-  &::before {
-    display: inline-block;
-    content: "👤 ";
-    width: 1.5em;
+  .fc-agendaDay-view &,
+  .fc-agendaWeek-view & {
+    display: block;
+    &::before {
+      display: inline-block;
+      content: "👤 ";
+      width: 1.5em;
+    }
   }
 }
 
 .fc-location {
+  display: none;
   font-style: italic;
 
-  &::before {
-    display: inline-block;
-    content: "📍 ";
-    width: 1.5em;
+  .fc-agendaDay-view &,
+  .fc-agendaWeek-view & {
+    display: block;
+    &::before {
+      display: inline-block;
+      content: "📍 ";
+      width: 1.5em;
+    }
   }
 }
