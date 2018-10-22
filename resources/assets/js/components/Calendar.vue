@@ -53,6 +53,7 @@
         mounted() {
             this.calendar = new Calendar(this.$el, {
                 ...this.config,
+                header: { center: 'month,agendaWeek,agendaDay' },
                 select: this.onSelect,
                 unselect: this.onUnselect,
                 eventClick: this.onEventClick,
