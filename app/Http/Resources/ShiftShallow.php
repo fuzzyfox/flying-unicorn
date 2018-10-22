@@ -23,6 +23,7 @@ class ShiftShallow extends JsonResource
             'description' => (string)$this->description,
 
             'location_id' => (string)$this->location_id,
+            'location'    => new LocationResource($this->location),
 
             'min'         => (int)$this->min,
             'max'         => $this->max ? (int)$this->max : null,
