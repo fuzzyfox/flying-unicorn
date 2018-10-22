@@ -3,8 +3,8 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\User as UserResource;
-use App\Http\Resources\Team as TeamResource;
+use App\Http\Resources\UserShallow as UserShallowResource;
+use App\Http\Resources\TeamShallow as TeamShallowResource;
 use App\Http\Resources\Location as LocationResource;
 
 class Shift extends JsonResource
@@ -21,7 +21,7 @@ class Shift extends JsonResource
             'id'          => (string)$this->id,
 
             'user_id'     => (string)$this->user_id,
-            'user'        => new UserResource($this->user),
+            'user'        => new UserShallowResource($this->user),
 
             'name'        => (string)$this->name,
             'description' => (string)$this->description,
@@ -36,8 +36,8 @@ class Shift extends JsonResource
             'start_time'  => (string)$this->start_time,
             'end_time'    => (string)$this->end_time,
 
-            'users'       => UserResource::collection($this->users),
-            'teams'       => TeamResource::collection($this->teams),
+            'users'       => UserShallowResource::collection($this->users),
+            'teams'       => TeamShallowResource::collection($this->teams),
         ];
 
         // $this->mergeAdditionalFields($request, $rtn, 'shifts');
