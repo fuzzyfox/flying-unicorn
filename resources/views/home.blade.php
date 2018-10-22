@@ -7,7 +7,7 @@
             <b-col cols="12">
                 <b-card title="Schedule">
                     <fu-calednar :events="events"></fu-calednar>
-                    {{-- <code>{{ url('') }}/calendar/{{ Auth::user()->id }}.ics</code> --}}
+                    <code>{{ url('') }}/calendar/{{ Auth::user()->id }}.ics</code>
                 </b-card>
             </b-col>
         </b-row>
