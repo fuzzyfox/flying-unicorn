@@ -23,8 +23,8 @@ class CalendarController extends Controller
             $event = new Event();
             $event
                 ->setUniqueId($dnd->id)
-                ->setDtStart(new \DateTime($dnd->start_time))
-                ->setDtEnd(new \DateTime($dnd->end_time))
+                ->setDtStart(new \DateTime($dnd->start_time, new \DateTimeZone('Europe/London')))
+                ->setDtEnd(new \DateTime($dnd->end_time, new \DateTimeZone('Europe/London')))
                 ->setSummary($dnd->reason ?? 'Do Not Disturb')
                 // ->setOrganizer($user->name)
                 ->setSequence(strtotime($dnd->updated_at));
@@ -35,8 +35,8 @@ class CalendarController extends Controller
             $event = new Event();
             $event
                 ->setUniqueId($shift->id)
-                ->setDtStart(new \DateTime($shift->start_time))
-                ->setDtEnd(new \DateTime($shift->end_time))
+                ->setDtStart(new \DateTime($shift->start_time, new \DateTimeZone('Europe/London')))
+                ->setDtEnd(new \DateTime($shift->end_time, new \DateTimeZone('Europe/London')))
                 ->setSummary($shift->name)
                 ->setDescription($shift->description . '\n\nShift Lead: ' . $shift->user->name)
                 // ->setOrganizer($shift->user->name)
