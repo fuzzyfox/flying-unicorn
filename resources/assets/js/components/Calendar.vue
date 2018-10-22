@@ -60,7 +60,14 @@
                 events: this.events,
                 eventRender(info) {
                     const contentEl = info.el.querySelector('.fc-content')
-                    const {description, location} = info.event.extendedProps
+                    const {description, location, user} = info.event.extendedProps
+
+                    if (user) {
+                        const userEl = document.createElement('div')
+                        userEl.classList.add('fc-user')
+                        userEl.textContent = user.name
+                        contentEl.appendChild(userEl)
+                    }
 
                     if (description) {
                         const descEl = document.createElement('div')

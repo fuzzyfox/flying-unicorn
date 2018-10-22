@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Location as LocationResource;
+use App\Http\Resources\UserShallow as UserShallowResource;
 
 class ShiftShallow extends JsonResource
 {
@@ -19,6 +20,7 @@ class ShiftShallow extends JsonResource
             'id'          => (string)$this->id,
 
             'user_id'     => (string)$this->user_id,
+            'user'        => new UserShallow($this->user),
 
             'name'        => (string)$this->name,
             'description' => (string)$this->description,
