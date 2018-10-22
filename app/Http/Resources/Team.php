@@ -28,7 +28,7 @@ class Team extends JsonResource
             $rtn['applications'] = UserResource::collection($this->applications);
         }
 
-        $this->mergeAdditionalFields($request, $rtn, 'teams');
+        // $this->mergeAdditionalFields($request, $rtn, 'teams');
 
         $rtn = array_merge($rtn, [
             'created_at'   => (string)$this->created_at,

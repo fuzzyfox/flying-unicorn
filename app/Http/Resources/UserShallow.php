@@ -20,7 +20,7 @@ class UserShallow extends JsonResource
             'is_super'   => (bool)$this->is_super,
         ];
 
-        $this->mergeAdditionalFields($request, $rtn, 'users');
+        // $this->mergeAdditionalFields($request, $rtn, 'users');
 
         $rtn = array_merge($rtn, [
             'created_at' => (string)$this->created_at,

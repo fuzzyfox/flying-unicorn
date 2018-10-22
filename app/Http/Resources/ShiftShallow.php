@@ -32,7 +32,7 @@ class ShiftShallow extends JsonResource
             'end_time'    => (string)$this->end_time,
         ];
 
-        $this->mergeAdditionalFields($request, $rtn, 'shifts');
+        // $this->mergeAdditionalFields($request, $rtn, 'shifts');
 
         $rtn = array_merge($rtn, [
             'created_at'   => (string)$this->created_at,

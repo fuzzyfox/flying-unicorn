@@ -32,7 +32,7 @@ class TeamShallow extends JsonResource
             'status'       => (string)$status,
         ];
 
-        $this->mergeAdditionalFields($request, $rtn, 'teams');
+        // $this->mergeAdditionalFields($request, $rtn, 'teams');
 
         $rtn = array_merge($rtn, [
             'created_at'   => (string)$this->created_at,

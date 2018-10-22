@@ -36,7 +36,7 @@ class User extends JsonResource
             $rtn['shifts'] = ShiftShallowResource::collection($this->donotdisturbs);
         }
 
-        $this->mergeAdditionalFields($request, $rtn, 'users');
+        // $this->mergeAdditionalFields($request, $rtn, 'users');
 
         $rtn = array_merge($rtn, [
             'created_at' => (string)$this->created_at,

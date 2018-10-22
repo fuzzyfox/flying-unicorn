@@ -18,7 +18,7 @@ class Location extends JsonResource
             'description'  => (string)$this->description,
         ];
 
-        $this->mergeAdditionalFields($request, $rtn, 'locations');
+        // $this->mergeAdditionalFields($request, $rtn, 'locations');
 
         return $rtn;
     }

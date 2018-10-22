@@ -39,7 +39,7 @@ class Shift extends JsonResource
             'teams'       => TeamResource::collection($this->teams),
         ];
 
-        $this->mergeAdditionalFields($request, $rtn, 'shifts');
+        // $this->mergeAdditionalFields($request, $rtn, 'shifts');
 
         $rtn = array_merge($rtn, [
             'created_at'   => (string)$this->created_at,
