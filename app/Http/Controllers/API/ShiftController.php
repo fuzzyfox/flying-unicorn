@@ -35,7 +35,7 @@ class ShiftController extends Controller
      */
     public function store(StoreShiftRequest $request)
     {
-        $shift = Shift::create($request->all());
+        $shift = new Shift($request->all());
 
         if ($request->user()->can('shifts.transfer', Shift::class)) {
             $shift->user_id = $request->input('user_id', $request->user()->id);
