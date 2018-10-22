@@ -33,7 +33,7 @@ class User extends JsonResource
         }
 
         if ($request->user()->can('users.show.shifts', $this->resource)) {
-            $rtn['shifts'] = ShiftShallowResource::collection($this->donotdisturbs);
+            $rtn['shifts'] = ShiftShallowResource::collection($this->shifts);
         }
 
         // $this->mergeAdditionalFields($request, $rtn, 'users');
