@@ -23,8 +23,12 @@ Route::namespace('API')->middleware('auth:api')->group(function ($request) {
     });
 
     Route::post('teams/{team}/members', 'TeamController@storeMember');
-    Route::put('teams/{team}/members/{user}', 'TeamController@updateMember');
+    // Route::put('teams/{team}/members/{user}', 'TeamController@updateMember');
     Route::delete('teams/{team}/members/{user}', 'TeamController@destroyMember');
+
+    Route::post('shifts/{shift}/users', 'ShiftController@storeUser');
+    // Route::put('shifts/{shift}/users/{user}', 'ShiftController@updateUser');
+    Route::delete('shifts/{shift}/users/{user}', 'ShiftController@destroyUser');
 
   Route::apiResource('users', 'UserController');
   Route::apiResource('teams', 'TeamController');
