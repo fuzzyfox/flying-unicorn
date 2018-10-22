@@ -38,7 +38,7 @@ class CalendarController extends Controller
                 ->setDtStart(new \DateTime($shift->start_time, new \DateTimeZone('Europe/London')))
                 ->setDtEnd(new \DateTime($shift->end_time, new \DateTimeZone('Europe/London')))
                 ->setSummary($shift->name)
-                ->setDescription($shift->description . '\\n\\nShift Lead: ' . $shift->user->name)
+                ->setDescription($shift->description . "\n\nShift Lead: " . $shift->user->name)
                 // ->setOrganizer($shift->user->name)
                 ->setLocation($shift->location->name ?? 'Ravensbourne')
                 ->setSequence(strtotime($shift->updated_at));
