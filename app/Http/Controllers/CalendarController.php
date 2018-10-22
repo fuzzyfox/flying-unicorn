@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use \Eluceo\iCal\Component\Calendar;
 use \Eluceo\iCal\Component\Event;
+use \Eluceo\iCal\Component\Alarm;
 
 class CalendarController extends Controller
 {
@@ -42,6 +43,15 @@ class CalendarController extends Controller
                 // ->setOrganizer($shift->user->name)
                 ->setLocation($shift->location->name ?? 'Ravensbourne')
                 ->setSequence(strtotime($shift->updated_at));
+
+            $alarm = new Alarm();
+            $alarm
+                ->setAction('DISPLAY')
+                ->setDescription('Shift Starts in 15 minutes')
+                ->setDuration('-PT15M');
+
+            $event->addComponent($alarm);
+
             $cal->addComponent($event);
         });
 
