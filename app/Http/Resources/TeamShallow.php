@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources;
 
-use App\Http\Resources\User as UserResource;
+use App\Http\Resources\UserShallow as UserShallowResource;
 
-class UserTeam extends JsonResource
+class TeamShallow extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -29,7 +29,6 @@ class UserTeam extends JsonResource
             'description'  => (string)$this->description,
             'restricted'   => (bool)$this->restricted,
             'user_id'      => (string)$this->user_id,
-            'user'         => new UserResource($this->user),
             'status'       => (string)$status,
         ];
 

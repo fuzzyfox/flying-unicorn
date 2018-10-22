@@ -3,7 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\User as UserResource;
+use App\Http\Resources\UserShallow as UserShallowResource;
 
 class AdditionalField extends JsonResource
 {
@@ -26,7 +26,7 @@ class AdditionalField extends JsonResource
             'description'      => (string)$this->description,
 
             'created_by'       => (string)$this->created_by,
-            'creator'          => new UserResource($this->creator),
+            'creator'          => new UserShallowResource($this->creator),
         ];
 
         $rtn = array_merge($rtn, [

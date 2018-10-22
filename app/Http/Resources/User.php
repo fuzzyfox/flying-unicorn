@@ -3,8 +3,9 @@
 namespace App\Http\Resources;
 
 
-use App\Http\Resources\UserTeam as UserTeamResource;
+use App\Http\Resources\TeamShallow as TeamShallowResource;
 use App\Http\Resources\DoNotDisturb as DoNotDisturbResource;
+use App\Http\Resources\ShiftShallow as ShiftShallowResource;
 
 class User extends JsonResource
 {
@@ -24,13 +25,16 @@ class User extends JsonResource
         ];
 
         if ($request->user()->can('users.show.teams.status', $this->resource)) {
-            $rtn['teams'] = UserTeamResource::collection($this->teams);
+            $rtn['teams'] = TeamShallowResource::collection($this->teams);
         }
 
         if ($request->user()->can('users.show.donotdisturbs', $this->resource)) {
             $rtn['dnds'] = DoNotDisturbResource::collection($this->donotdisturbs);
         }
 
+        if ($request->user()->can('users.show.shifts', $this->resource)) {
+            $rtn['shifts'] = ShiftShallowResource::collection($this->donotdisturbs);
+        }
 
         $this->mergeAdditionalFields($request, $rtn, 'users');
 
