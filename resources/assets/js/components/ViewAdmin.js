@@ -51,14 +51,6 @@ export default {
         }
     },
 
-    watch: {
-        activeUserId(val, prev) {
-            if (!val || val !== prev) {
-                this.activeShift = null
-            }
-        }
-    },
-
     methods: {
         onUserClick(user) {
             this.activeUserId = user.id
