@@ -37,6 +37,7 @@ export default {
                 title: e.name || undefined,
                 description: e.description || undefined,
                 location: e.location ? {...e.location} : undefined,
+                user: e.user ? {...e.user} : undefined
             }))
 
             return [...shifts, ...this.dnds]
