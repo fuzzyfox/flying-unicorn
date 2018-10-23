@@ -60,7 +60,7 @@
                 events: this.events,
                 eventRender(info) {
                     const contentEl = info.el.querySelector('.fc-content')
-                    const {description, location, user, min, max, desired} = info.event.extendedProps
+                    const {description, location, user, min, max, desired, users} = info.event.extendedProps
 
                     if (user) {
                         const userEl = document.createElement('div')
@@ -101,6 +101,14 @@
                         const descEl = document.createElement('div')
                         descEl.classList.add('fc-desired')
                         descEl.textContent = `desired: ${desired}`
+                        contentEl.appendChild(descEl)
+                    }
+
+                    if (users && Array.isArray(users)) {
+                        const descEl = document.createElement('div')
+                        descEl.style.fontWeight = 'bold'
+                        descEl.classList.add('fc-desired')
+                        descEl.textContent = `count: ${users.length}`
                         contentEl.appendChild(descEl)
                     }
                 }

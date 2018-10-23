@@ -80,6 +80,11 @@
 }
 
 .admin {
+  .fc-content {
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
   .table tr {
     &:not(.claimed) {
       font-weight: bold;

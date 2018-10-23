@@ -15,7 +15,7 @@
             </b-col>
             <b-col cols="4">
                 <b-card title="Users" class="mb-1">
-                    <table class="table table-stripped" style="max-height: 80%;overflow: auto;">
+                    <table class="table table-stripped" style="max-height: 50vh;overflow: auto;">
                         <thead>
                             <tr>
                                 <th>Name</th>
