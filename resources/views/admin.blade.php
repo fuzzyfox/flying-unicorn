@@ -68,6 +68,12 @@
                             @click="addCurrentToShift"
                         >Add to shift</b-btn>
                     </template>
+
+                    <hr>
+
+                    <ul>
+                        <li v-for="user in activeShift.users">@{{user.name}}</li>
+                    </ul>
                 </b-card>
             </b-col>
         </b-row>
