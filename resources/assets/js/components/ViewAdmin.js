@@ -41,6 +41,7 @@ export default {
                 min: e.min,
                 max: e.max,
                 desired: e.desired,
+                users: e.users || undefined,
             }))
 
             return [...shifts, ...this.dnds]
