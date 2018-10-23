@@ -44,7 +44,12 @@
 
                 <b-card v-if="activeShift && activeUserId" :title="activeShift.name">
                     <p v-if="activeShift.description">@{{activeShift.description}}</p>
+                    <p v-if="activeShift.user">👤 <em>@{{activeShift.user.name}}</em></p>
                     <p v-if="activeShift.location">📍 <em>@{{activeShift.location.name}}</em></p>
+                    <p v-if="activeShift.min">min: @{{activeShift.min}}</p>
+                    <p v-if="activeShift.max">max: @{{activeShift.max}}</p>
+                    <p v-if="activeShift.desired">desired: @{{activeShift.desired}}</p>
+                    <p v-if="activeShift.count">count: @{{activeShift.count}}</p>
 
                     <b-btn
                         v-if="activeShift.users.find(u => u.id === activeUserId)"
