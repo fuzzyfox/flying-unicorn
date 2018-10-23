@@ -20,6 +20,7 @@
                             <tr>
                                 <th>Name</th>
                                 <th>hours</th>
+                                <th>claimed</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -30,6 +31,7 @@
                             >
                                 <td>@{{user.name}}</td>
                                 <td>@{{user.hours}}</td>
+                                <td>@{{user.claimed}}</td>
                             </tr>
                         </tbody>
                     </table>
