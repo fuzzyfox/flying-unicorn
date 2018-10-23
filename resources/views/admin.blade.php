@@ -26,7 +26,7 @@
                         <tbody>
                             <tr
                                 v-for="user in users"
-                                :class="{active:user.id == activeUserId, highlight: activeShift && activeShift.users.find(u=>u.id === user.id)}"
+                                :class="{active:user.id == activeUserId, highlight: activeShift && activeShift.users.find(u=>u.id === user.id), claimed: user.claimed}"
                                 @click="onUserClick(user)"
                             >
                                 <td>@{{user.name}}</td>
