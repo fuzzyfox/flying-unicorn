@@ -21,8 +21,8 @@
                             This is unique to you're account so
                             <strong>do not</strong> share this link.
                         </p>
-                        <pre><code>{{ preg_replace('/^https?:\/\//i', 'https://', url('')) }}/calendar/{{ Auth::user()->id }}.ics</code></pre>
-                        <b-btn href="{{ preg_replace('/^https?:\/\//i', 'webcal://', url('')) }}/calendar/{{ Auth::user()->id }}.ics">Add To Calendar</b-btn>
+                        <pre><code>{{ url('') }}/calendar/{{ Auth::user()->id }}.ics</code></pre>
+                        <b-btn href="{{ url('') }}/calendar/{{ Auth::user()->id }}.ics">Add To Calendar</b-btn>
                     </b-card>
                 </b-card>
             </b-col>
