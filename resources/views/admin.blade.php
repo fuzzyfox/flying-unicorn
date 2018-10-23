@@ -42,7 +42,7 @@
                     <b-badge v-for="team in activeUser.teams" :key="team.id" variant="primary">@{{team.name}}</b-badge>
                 </b-card>
 
-                <b-card v-if="activeShift && activeUserId" :title="activeShift.name">
+                <b-card v-if="activeShift" :title="activeShift.name">
                     <p v-if="activeShift.description">@{{activeShift.description}}</p>
                     <ul>
                         <li v-if="activeShift.user">👤 <em>@{{activeShift.user.name}}</em></li>
@@ -53,16 +53,18 @@
                         <li v-if="activeShift.count">count: @{{activeShift.count}}</li>
                     </ul>
 
-                    <b-btn
-                        v-if="activeShift.users.find(u => u.id === activeUserId)"
-                        variant="danger"
-                        @click="removeCurrentFromShift"
-                    >Remove from shift</b-btn>
-                    <b-btn
-                        v-else
-                        variant="primary"
-                        @click="addCurrentToShift"
-                    >Add to shift</b-btn>
+                    <template v-if="activeUserId">
+                        <b-btn
+                            v-if="activeShift.users.find(u => u.id === activeUserId)"
+                            variant="danger"
+                            @click="removeCurrentFromShift"
+                        >Remove from shift</b-btn>
+                        <b-btn
+                            v-else
+                            variant="primary"
+                            @click="addCurrentToShift"
+                        >Add to shift</b-btn>
+                    </template>
                 </b-card>
             </b-col>
         </b-row>
