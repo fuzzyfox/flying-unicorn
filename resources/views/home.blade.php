@@ -22,7 +22,7 @@
                             <strong>do not</strong> share this link.
                         </p>
                         <pre><code>{{ url('') }}/calendar/{{ Auth::user()->id }}.ics</code></pre>
-                        <b-btn href="{{ url('') }}/calendar/{{ Auth::user()->id }}.ics">Add To Calendar</b-btn>
+                        {{-- <b-btn href="{{ url('') }}/calendar/{{ Auth::user()->id }}.ics">Add To Calendar</b-btn> --}}
                     </b-card>
                 </b-card>
             </b-col>
