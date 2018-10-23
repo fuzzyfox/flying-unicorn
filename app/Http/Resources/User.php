@@ -49,6 +49,8 @@ class User extends JsonResource
             }, 0);
 
             $rtn['claimed'] = (bool)$this->password;
+
+            $rtn['claim_code'] = (string)$this->claim_code;
         }
 
         // $this->mergeAdditionalFields($request, $rtn, 'users');
