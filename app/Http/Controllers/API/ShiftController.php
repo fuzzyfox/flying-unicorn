@@ -115,9 +115,9 @@ class ShiftController extends Controller
             return response('User not found', 404);
         }
 
-        if ($shift->users()->contains($user)) {
-            return response('Conflict', 409);
-        }
+        // if ($shift->users()->contains($user)) {
+        //     return response('Conflict', 409);
+        // }
 
         $shift->users()->attach(
             $user,
