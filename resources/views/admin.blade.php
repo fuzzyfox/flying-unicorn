@@ -53,7 +53,7 @@
                         <li v-if="activeShift.min">min: @{{activeShift.min}}</li>
                         <li v-if="activeShift.max">max: @{{activeShift.max}}</li>
                         <li v-if="activeShift.desired">desired: @{{activeShift.desired}}</li>
-                        <li v-if="activeShift.count">count: @{{activeShift.count}}</li>
+                        <li v-if="activeShift.users">count: @{{activeShift.users.length}}</li>
                     </ul>
 
                     <template v-if="activeUserId">
