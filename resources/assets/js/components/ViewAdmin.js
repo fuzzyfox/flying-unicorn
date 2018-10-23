@@ -1,4 +1,5 @@
 import {mapState, mapGetters} from 'vuex'
+import sortBy from 'lodash/sortBy'
 
 import * as ShiftService from '@/http/ShiftService'
 
@@ -14,8 +15,10 @@ export default {
 
     computed: {
         ...mapState(['user']),
-        ...mapGetters({users: 'usersAsArray'}),
         ...mapGetters({shifts: 'shiftsAsArray'}),
+        users() {
+            return sortBy(this.$store.getters.usersAsArray, 'hours');
+        },
         dnds() {
             return this.activeUser ? this.activeUser.dnds.map( dnd => ({
                 start: dnd.start_time,

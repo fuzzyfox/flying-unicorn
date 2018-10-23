@@ -36,6 +36,19 @@ class User extends JsonResource
             $rtn['shifts'] = ShiftShallowResource::collection($this->shifts);
         }
 
+        if ($request->user()->is_super) {
+            $rtn['hours'] = (float)$this->shifts->reduce(function($carry, $item) {
+                $date1 = new \DateTime($item->start_time);
+                $date2 = new \DateTime($item->end_time);
+
+                $diff = $date2->diff($date1);
+
+                $hours = $diff->h;
+                $hours = $hours + ($diff->days*24);
+                return $carry + $hours;
+            }, 0);
+        }
+
         // $this->mergeAdditionalFields($request, $rtn, 'users');
 
         $rtn = array_merge($rtn, [
