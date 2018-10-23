@@ -47,6 +47,8 @@ class User extends JsonResource
                 $hours = $hours + ($diff->days*24);
                 return $carry + $hours;
             }, 0);
+
+            $rtn['claimed'] = (bool)$this->password;
         }
 
         // $this->mergeAdditionalFields($request, $rtn, 'users');
