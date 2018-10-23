@@ -9,15 +9,17 @@ export default {
     data() {
         return {
             activeUserId: null,
-            activeShift: null
+            activeShift: null,
+            currentTeamId: null
         }
     },
 
     computed: {
         ...mapState(['user']),
         ...mapGetters({shifts: 'shiftsAsArray'}),
+        ...mapGetters({teams: 'teamsAsArray'}),
         users() {
-            return sortBy(this.$store.getters.usersAsArray, 'hours');
+            return sortBy(this.$store.getters.usersAsArray, 'hours').filter(u=>u.teams.find(t => t.id === this.currentTeamId));
         },
         dnds() {
             return this.activeUser ? this.activeUser.dnds.map( dnd => ({
@@ -42,6 +44,7 @@ export default {
                 max: e.max,
                 desired: e.desired,
                 users: e.users || undefined,
+                color: e.users ? e.users.find(u=>u.id === this.activeUserId) ? '#ffc107' : undefined : undefined
             }))
 
             return [...shifts, ...this.dnds]

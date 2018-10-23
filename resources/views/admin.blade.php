@@ -13,7 +13,13 @@
                     {{-- <code>{{ url('') }}/calendar/{{ Auth::user()->id }}.ics</code> --}}
                 </b-card>
             </b-col>
+
             <b-col cols="4">
+                <b-card :title="teams" class="mb-1">
+                    <b-badge variant="danger" @click="currentTeamId = null"></b-badge>
+                    <b-badge v-for="team in teams" :key="team.id" variant="primary" @click="currentTeamId = team.id">@{{team.name}}</b-badge>
+                </b-card>
+
                 <b-card title="Users" class="mb-1" style="max-height: 50vh;overflow: auto;">
                     <table class="table table-stripped">
                         <thead>
