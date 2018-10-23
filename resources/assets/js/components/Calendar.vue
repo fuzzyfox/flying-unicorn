@@ -107,6 +107,7 @@
                     if (users && Array.isArray(users)) {
                         const descEl = document.createElement('div')
                         descEl.style.fontWeight = 'bold'
+                        descEl.style.paddingBottom = '2em'
                         descEl.classList.add('fc-count')
                         descEl.textContent = `count: ${users.length}`
                         contentEl.appendChild(descEl)
