@@ -39,8 +39,8 @@
 
                 <b-card v-if="activeUser" :title="activeUser.name" class="mb-1">
                     <div>
-                        <strong><small>Hours: <code>@{{user.hours}}</code></small></strong><br>
-                        <small>Tito Ticket Id: <code>@{{user.claim_code}}</code></small>
+                        <strong><small>Hours: <code>@{{activeUser.hours}}</code></small></strong><br>
+                        <small>Tito Ticket Id: <code>@{{activeUser.claim_code}}</code></small>
                     </div>
                     <b-badge v-for="team in activeUser.teams" :key="team.id" variant="primary">@{{team.name}}</b-badge>
                 </b-card>
