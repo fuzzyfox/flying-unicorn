@@ -14,8 +14,8 @@
                 </b-card>
             </b-col>
             <b-col cols="4">
-                <b-card title="Users" class="mb-1">
-                    <table class="table table-stripped" style="max-height: 50vh;overflow: auto;">
+                <b-card title="Users" class="mb-1" style="max-height: 50vh;overflow: auto;">
+                    <table class="table table-stripped">
                         <thead>
                             <tr>
                                 <th>Name</th>
