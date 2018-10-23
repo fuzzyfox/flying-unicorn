@@ -84,6 +84,10 @@
     overflow-y: scroll;
     overflow-x: hidden;
     max-height: 100%;
+
+    & > div:last-child {
+      padding-bottom: 2em;
+    }
   }
 
   .table tr {
