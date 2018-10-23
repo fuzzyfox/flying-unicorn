@@ -6,6 +6,7 @@
 
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/bootstrap";
 @import "~bootstrap-vue/dist/bootstrap-vue.css";
 @import "~fullcalendar/dist/fullcalendar.css";
 
@@ -74,6 +75,25 @@
       display: inline-block;
       content: "📍 ";
       width: 1.5em;
+    }
+  }
+}
+
+.admin {
+  .table tr {
+    &.active {
+        background-color: $secondary;
+        color: $white;
+    }
+
+    &.active.highlight {
+        background-color: $green;
+        color: $white;
+    }
+
+    &.highlight {
+        background-color: $blue;
+        color: $white;
     }
   }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Shift;
+use App\User;
 use App\Http\Resources\Shift as ShiftResource;
 use App\Http\Requests\StoreShift as StoreShiftRequest;
 use App\Http\Requests\UpdateShift as UpdateShiftRequest;
@@ -97,7 +98,7 @@ class ShiftController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Shfit $shift)
+    public function destroy(Shift $shift)
     {
         $this->authorize('shifts.destroy', $shift);
 
@@ -131,7 +132,7 @@ class ShiftController extends Controller
         return response(new ShiftResource($shift->fresh()), 201);
     }
 
-    public function destroyUser(Request $requrst, Shfit $shift, User $user)
+    public function destroyUser(Request $requrst, Shift $shift, User $user)
     {
         $this->authorize('shifts.destroy.user', $shift);
 

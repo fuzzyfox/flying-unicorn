@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,7 +33,12 @@ Route::middleware('auth')->group(function() {
     });
 
     Route::prefix('/admin')->group(function() {
-        Route::view('/', 'admin.dashboard');
-        Route::view('/roles', 'admin.roles');
+        Route::get('/', function(Request $request) {
+            if (!$request->user()->is_super) {
+                return response('Forbidden', 403);
+            }
+
+            return view('admin');
+        });
     });
 });
