@@ -19,7 +19,12 @@ export default {
         ...mapGetters({shifts: 'shiftsAsArray'}),
         ...mapGetters({teams: 'teamsAsArray'}),
         users() {
-            return sortBy(this.$store.getters.usersAsArray, 'hours').filter(u=>u.teams.find(t => t.id === this.currentTeamId));
+            let list = sortBy(this.$store.getters.usersAsArray, 'hours');
+
+            if (this.currentTeamId) {
+                list = list.filter(u=>u.teams.find(t => t.id === this.currentTeamId))
+            }
+            return list
         },
         dnds() {
             return this.activeUser ? this.activeUser.dnds.map( dnd => ({
