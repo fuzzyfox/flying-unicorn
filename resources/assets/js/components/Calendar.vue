@@ -62,6 +62,36 @@
                     const contentEl = info.el.querySelector('.fc-content')
                     const {description, location, user, min, max, desired, users} = info.event.extendedProps
 
+                    if (users && Array.isArray(users)) {
+                        const descEl = document.createElement('div')
+                        descEl.style.fontWeight = 'bold'
+                        descEl.style.paddingBottom = '2em'
+                        descEl.classList.add('fc-count')
+                        descEl.textContent = `count: ${users.length}`
+                        contentEl.appendChild(descEl)
+                    }
+
+                    if (desired) {
+                        const descEl = document.createElement('div')
+                        descEl.classList.add('fc-desired')
+                        descEl.textContent = `desired: ${desired}`
+                        contentEl.appendChild(descEl)
+                    }
+
+                    if (min) {
+                        const descEl = document.createElement('div')
+                        descEl.classList.add('fc-min')
+                        descEl.textContent = `min: ${min}`
+                        contentEl.appendChild(descEl)
+                    }
+
+                    if (max) {
+                        const descEl = document.createElement('div')
+                        descEl.classList.add('fc-max')
+                        descEl.textContent = `max: ${max}`
+                        contentEl.appendChild(descEl)
+                    }
+
                     if (user) {
                         const userEl = document.createElement('div')
                         userEl.classList.add('fc-user')
@@ -81,36 +111,6 @@
                         locEl.classList.add('fc-location')
                         locEl.textContent = location.name
                         contentEl.appendChild(locEl)
-                    }
-
-                    if (min) {
-                        const descEl = document.createElement('div')
-                        descEl.classList.add('fc-min')
-                        descEl.textContent = `min: ${min}`
-                        contentEl.appendChild(descEl)
-                    }
-
-                    if (max) {
-                        const descEl = document.createElement('div')
-                        descEl.classList.add('fc-max')
-                        descEl.textContent = `max: ${max}`
-                        contentEl.appendChild(descEl)
-                    }
-
-                    if (desired) {
-                        const descEl = document.createElement('div')
-                        descEl.classList.add('fc-desired')
-                        descEl.textContent = `desired: ${desired}`
-                        contentEl.appendChild(descEl)
-                    }
-
-                    if (users && Array.isArray(users)) {
-                        const descEl = document.createElement('div')
-                        descEl.style.fontWeight = 'bold'
-                        descEl.style.paddingBottom = '2em'
-                        descEl.classList.add('fc-count')
-                        descEl.textContent = `count: ${users.length}`
-                        contentEl.appendChild(descEl)
                     }
                 }
             })
