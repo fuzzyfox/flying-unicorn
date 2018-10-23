@@ -82,6 +82,27 @@
                         locEl.textContent = location.name
                         contentEl.appendChild(locEl)
                     }
+
+                    if (min) {
+                        const descEl = document.createElement('div')
+                        descEl.classList.add('fc-min')
+                        descEl.textContent = `min: ${min}`
+                        contentEl.appendChild(descEl)
+                    }
+
+                    if (max) {
+                        const descEl = document.createElement('div')
+                        descEl.classList.add('fc-max')
+                        descEl.textContent = `max: ${max}`
+                        contentEl.appendChild(descEl)
+                    }
+
+                    if (desired) {
+                        const descEl = document.createElement('div')
+                        descEl.classList.add('fc-desired')
+                        descEl.textContent = `desired: ${desired}`
+                        contentEl.appendChild(descEl)
+                    }
                 }
             })
             this.calendar.render();
