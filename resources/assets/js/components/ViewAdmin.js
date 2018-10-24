@@ -53,7 +53,7 @@ export default {
                     ? e.users.find(u=>u.id === this.activeUserId)
                         ? '#ffc107'
                         : e.users.length >= e.disired || 0
-                            ? '##28a745'
+                            ? '#28a745'
                             : undefined
                     : undefined
             }))
