@@ -49,7 +49,13 @@ export default {
                 max: e.max,
                 desired: e.desired,
                 users: e.users || undefined,
-                color: e.users ? e.users.find(u=>u.id === this.activeUserId) ? '#ffc107' : undefined : undefined
+                color: e.users
+                    ? e.users.find(u=>u.id === this.activeUserId)
+                        ? '#ffc107'
+                        : e.users.length >= e.disired || 0
+                            ? '##28a745'
+                            : undefined
+                    : undefined
             }))
 
             return [...shifts, ...this.dnds]
