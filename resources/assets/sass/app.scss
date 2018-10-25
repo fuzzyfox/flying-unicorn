@@ -90,7 +90,7 @@
     }
   }
 
-  .table tr {
+  .table tbody tr {
     &:not(.claimed) {
       font-weight: bold;
       background-color: $danger;
