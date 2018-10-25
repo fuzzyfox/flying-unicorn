@@ -29,7 +29,7 @@
                             <tr>
                                 <th>Name</th>
                                 <th>hours</th>
-                                <th>claimed</th>
+                                <th>claim code</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,7 +40,7 @@
                             >
                                 <td>@{{user.name}}</td>
                                 <td>@{{user.hours}}</td>
-                                <td>@{{user.claimed}}</td>
+                                <td>@{{user.claim_code}}</td>
                             </tr>
                         </tbody>
                     </table>
