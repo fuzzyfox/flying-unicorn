@@ -21,6 +21,9 @@
                 </b-card>
 
                 <b-card title="Users" class="mb-1" style="max-height: 50vh;overflow: auto;">
+                    <b-form-checkbox v-model="showUnclaimed">
+                        Show Unclaimed
+                    </b-form-checkbox>
                     <table class="table table-stripped">
                         <thead>
                             <tr>

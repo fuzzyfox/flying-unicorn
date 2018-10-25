@@ -10,7 +10,8 @@ export default {
         return {
             activeUserId: null,
             activeShift: null,
-            currentTeamId: null
+            currentTeamId: null,
+            showUnclaimed: false,
         }
     },
 
@@ -24,6 +25,11 @@ export default {
             if (this.currentTeamId) {
                 list = list.filter(u=>u.teams.find(t => t.id === this.currentTeamId))
             }
+
+            if (!this.showUnclaimed) {
+                list = list.filter(u=>u.claimed)
+            }
+
             return list
         },
         dnds() {
