@@ -54,8 +54,10 @@ export default {
                         ? '#ffc107'
                         : e.users.length >= e.desired
                             ? '#28a745'
-                            : undefined
-                    : undefined
+                            : e.users.length > e.min
+                                ? '#17a2b8'
+                                : '#6c757d'
+                    : '#ff8000'
             }))
 
             return [...shifts, ...this.dnds]
