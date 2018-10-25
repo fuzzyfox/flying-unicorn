@@ -93,6 +93,8 @@
   .table tr {
     &:not(.claimed) {
       font-weight: bold;
+      background-color: $danger;
+      color: $white;
     }
 
     &.active {
