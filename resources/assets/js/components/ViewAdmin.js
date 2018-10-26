@@ -92,6 +92,9 @@ export default {
                         this.activeShift = this.$store.state.shifts[id]
                     })
                 })
+                .catch(() => {
+                    window.alert('action failed')
+                })
         },
         removeCurrentFromShift() {
             return ShiftService.destroyUser(this.activeShift.id, this.activeUserId)
@@ -103,6 +106,23 @@ export default {
                     return this.$nextTick(() => {
                         this.activeShift = this.$store.state.shifts[id]
                     })
+                })
+                .catch(() => {
+                    window.alert('action failed')
+                })
+        },
+        checkinUser(user) {
+            return ShiftService.checkinUser(user.id)
+                .then(() => this.$store.dispatch('fetchShifts'))
+                .catch(() => {
+                    window.alert('action failed')
+                })
+        },
+        verifyUser(user) {
+            return ShiftService.verifyUser(user.id)
+                .then(() => this.$store.dispatch('fetchShifts'))
+                .catch(() => {
+                    window.alert('action failed')
                 })
         }
     }

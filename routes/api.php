@@ -27,6 +27,8 @@ Route::namespace('API')->middleware('auth:api')->group(function ($request) {
     Route::delete('teams/{team}/members/{user}', 'TeamController@destroyMember');
 
     Route::post('shifts/{shift}/users', 'ShiftController@storeUser');
+    Route::post('shifts/{shift}/checkin', 'ShiftController@checkinUser');
+    Route::post('shifts/{shift}/verify', 'ShiftController@verifyUser');
     // Route::put('shifts/{shift}/users/{user}', 'ShiftController@updateUser');
     Route::delete('shifts/{shift}/users/{user}', 'ShiftController@destroyUser');
 

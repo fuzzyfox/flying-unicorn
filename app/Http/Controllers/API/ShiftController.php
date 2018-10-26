@@ -132,7 +132,7 @@ class ShiftController extends Controller
         return response(new ShiftResource($shift->fresh()), 201);
     }
 
-    public function destroyUser(Request $requrst, Shift $shift, User $user)
+    public function destroyUser(Request $request, Shift $shift, User $user)
     {
         $this->authorize('shifts.destroy.user', $shift);
 
@@ -140,5 +140,31 @@ class ShiftController extends Controller
         $shift->save();
 
         return response('', 204);
+    }
+
+    public function checkinUser(Request $request, Shift $shift) {
+        $user = $shift->users()->where('user_id', $request->input('user_id'));
+
+        if (!$user) {
+            return response('User not found', 404);
+        }
+
+        $user->pivot->checkin = now();
+        $user->pivot->checkin_by = $request->user()->id;
+
+        return response(new ShiftResource($shift->fresh()), 201);
+    }
+
+    public function verifyUser(Request $request, Shift $shift) {
+        $user = $shift->users()->where('user_id', $request->input('user_id'));
+
+        if (!$user) {
+            return response('User not found', 404);
+        }
+
+        $user->pivot->verified = now();
+        $user->pivot->verified_by = $request->user()->id;
+
+        return response(new ShiftResource($shift->fresh()), 201);
     }
 }

@@ -83,6 +83,31 @@
                     <ul>
                         <li v-for="user in activeShift.users" @click="onUserClick(user)">@{{user.name}}</li>
                     </ul>
+
+                    <table class="table table-stripped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Check-in</th>
+                                <th>Verify</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr
+                                v-for="user in activeShift.users"
+                            >
+                                <td @click="onUserClick(user)">@{{user.name}}</td>
+                                <td>
+                                    <b-badge v-if="user.checkin">@{{user.checkin}}</b-badge>
+                                    <b-btn v-if="!user.checkin" @click="checkinUser(user)">checkin</b-btn>
+                                </td>
+                                <td>
+                                    <b-badge v-if="user.verfied">@{{user.verfied}}</b-badge>
+                                    <b-btn v-if="!user.verfied" @click="verifyUser(user)">verify</b-btn>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </b-card>
             </b-col>
         </b-row>
