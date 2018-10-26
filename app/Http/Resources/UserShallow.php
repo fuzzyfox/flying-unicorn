@@ -20,6 +20,18 @@ class UserShallow extends JsonResource
             'is_super'   => (bool)$this->is_super,
         ];
 
+        if ($request->user()->is_super) {
+            if ($this->pivot->checkin) {
+                $rtn['checkin'] = $this->checkin ?? false;
+                $rtn['checkin_by'] = $this->checkin_by ?? null;
+            }
+
+            if ($this->pivot->verified) {
+                $rtn['verified'] = $this->verified ?? false;
+                $rtn['verified_by'] = $this->verified_by ?? null;
+            }
+        }
+
         // $this->mergeAdditionalFields($request, $rtn, 'users');
 
         $rtn = array_merge($rtn, [
