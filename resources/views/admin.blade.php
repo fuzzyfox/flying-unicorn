@@ -96,7 +96,7 @@
                         <tbody>
                             <tr
                                 v-for="user in activeShift.users"
-                                :class="{claimed: user.claimed}"
+                                class="claimed"
                             >
                                 <td @click="onUserClick(user)">@{{user.name}}</td>
                                 <td>
