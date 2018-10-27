@@ -42,7 +42,8 @@ class Shift extends Model
     }
 
     public function users() {
-        return $this->belongsToMany(User::class, 'user_shift');
+        return $this->belongsToMany(User::class, 'user_shift')
+            ->withPivot('checkin', 'checkin_by', 'verified', 'verified_by');
     }
 
     public function location() {
