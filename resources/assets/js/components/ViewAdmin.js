@@ -123,14 +123,14 @@ export default {
                 })
         },
         checkinUser(user) {
-            return ShiftService.checkinUser(user.id)
+            return ShiftService.checkinUser(this.activeShift.id, user.id)
                 .then(() => this.$store.dispatch('fetchShifts'))
                 .catch(() => {
                     window.alert('action failed')
                 })
         },
         verifyUser(user) {
-            return ShiftService.verifyUser(user.id)
+            return ShiftService.verifyUser(this.activeShift.id, user.id)
                 .then(() => this.$store.dispatch('fetchShifts'))
                 .catch(() => {
                     window.alert('action failed')
