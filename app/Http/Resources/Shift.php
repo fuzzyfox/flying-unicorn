@@ -36,7 +36,7 @@ class Shift extends JsonResource
             'start_time'  => (string)$this->start_time,
             'end_time'    => (string)$this->end_time,
 
-            'users'       => $this->users->map(function($user) {
+            'users'       => $this->users->map(function($user) use (&$request) {
                 $rtn = [
                     'id'         => (string)$user->id,
                     'name'       => (string)$user->name,
