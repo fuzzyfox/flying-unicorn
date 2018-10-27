@@ -104,8 +104,8 @@
                                     <b-btn v-if="!user.checkin" @click="checkinUser(user)" variant="primary">checkin</b-btn>
                                 </td>
                                 <td>
-                                    <b-badge v-if="user.verfied" variant="success">@{{user.verfied}}</b-badge>
-                                    <b-btn v-if="!user.verfied" @click="verifyUser(user)" :disabled="!user.checkin" variant="primary">verify</b-btn>
+                                    <b-badge v-if="user.verified" variant="success">@{{user.verified}}</b-badge>
+                                    <b-btn v-if="!user.verified" @click="verifyUser(user)" :disabled="!user.checkin" variant="primary">verify</b-btn>
                                 </td>
                             </tr>
                         </tbody>
