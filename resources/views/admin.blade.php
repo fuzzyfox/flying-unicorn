@@ -100,12 +100,12 @@
                             >
                                 <td @click="onUserClick(user)">@{{user.name}}</td>
                                 <td>
-                                    <b-badge v-if="user.checkin" variant="primary">@{{user.checkin}}</b-badge>
-                                    <b-btn v-if="!user.checkin" @click="checkinUser(user)" variant="info">checkin</b-btn>
+                                    <b-badge v-if="user.checkin" variant="success">@{{user.checkin}}</b-badge>
+                                    <b-btn v-if="!user.checkin" @click="checkinUser(user)" variant="primary">checkin</b-btn>
                                 </td>
                                 <td>
-                                    <b-badge v-if="user.verfied" variant="primary">@{{user.verfied}}</b-badge>
-                                    <b-btn v-if="!user.verfied" @click="verifyUser(user)" :disabled="!user.checkin" variant="info">verify</b-btn>
+                                    <b-badge v-if="user.verfied" variant="success">@{{user.verfied}}</b-badge>
+                                    <b-btn v-if="!user.verfied" @click="verifyUser(user)" :disabled="!user.checkin" variant="primary">verify</b-btn>
                                 </td>
                             </tr>
                         </tbody>

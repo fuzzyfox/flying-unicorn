@@ -165,9 +165,10 @@ class ShiftController extends Controller
             return response('User not found', 404);
         }
 
-        $user->verified = now();
-        $user->verified_by = $request->user()->id;
-        $user->save();
+        $shift->users()->updateExistingPivot($request->input('user_id'), [
+            'verified' => now(),
+            'verified_by' => $request->user()->id,
+        ]);
 
 
         return response(new ShiftResource($shift->fresh()), 201);
