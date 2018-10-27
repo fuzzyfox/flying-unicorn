@@ -21,13 +21,13 @@ class UserShallow extends JsonResource
         ];
 
         if ($request->user()->is_super) {
-            if ($this->checkin) {
-                $rtn['checkin'] = $this->checkin ?? false;
+            if ($this->pivot->checkin) {
+                $rtn['checkin'] = $this->pivot->checkin ?? false;
                 $rtn['checkin_by'] = $this->checkin_by ?? null;
             }
 
-            if ($this->verified) {
-                $rtn['verified'] = $this->verified ?? false;
+            if ($this->pivot->verified) {
+                $rtn['verified'] = $this->pivot->verified ?? false;
                 $rtn['verified_by'] = $this->verified_by ?? null;
             }
 
