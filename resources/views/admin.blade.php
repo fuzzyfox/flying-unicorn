@@ -7,6 +7,7 @@
             <b-col cols="8">
                 <b-card title="Schedule">
                     <fu-calednar
+                        :config="calendarConfig"
                         :events="events"
                         @event-click="onEventClick"
                     ></fu-calednar>

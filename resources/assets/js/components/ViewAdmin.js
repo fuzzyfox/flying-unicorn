@@ -12,6 +12,17 @@ export default {
             activeShift: null,
             currentTeamId: null,
             showUnclaimed: false,
+            calendarConfig: {
+                defaultView: 'agendaDay',
+                allDaySlot: false,
+                scrollTime: '07:00:00',
+                nowIndicator: true,
+                firstDay: 1,
+                validRange: {
+                    start: process.env.MIX_EVENT_START,
+                    end: process.env.MIX_EVENT_END
+                }
+            }
         }
     },
 
