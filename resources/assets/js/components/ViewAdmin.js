@@ -125,6 +125,13 @@ export default {
         checkinUser(user) {
             return ShiftService.checkinUser(this.activeShift.id, user.id)
                 .then(() => this.$store.dispatch('fetchShifts'))
+                .then(() => {
+                    const id = this.activeShift.id
+                    this.activeShift = null
+                    return this.$nextTick(() => {
+                        this.activeShift = this.$store.state.shifts[id]
+                    })
+                })
                 .catch(() => {
                     window.alert('action failed')
                 })
@@ -132,6 +139,13 @@ export default {
         verifyUser(user) {
             return ShiftService.verifyUser(this.activeShift.id, user.id)
                 .then(() => this.$store.dispatch('fetchShifts'))
+                .then(() => {
+                    const id = this.activeShift.id
+                    this.activeShift = null
+                    return this.$nextTick(() => {
+                        this.activeShift = this.$store.state.shifts[id]
+                    })
+                })
                 .catch(() => {
                     window.alert('action failed')
                 })
