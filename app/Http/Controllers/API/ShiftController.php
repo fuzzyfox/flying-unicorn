@@ -149,9 +149,11 @@ class ShiftController extends Controller
             return response('User not found', 404);
         }
 
-        $user->checkin = now();
-        $user->checkin_by = $request->user()->id;
-        $user->save();
+        $shuft->users()->updateExistingPivot($request->input('user_id'), [
+            'checkin' => now(),
+            'checkin_by' => $request->user()->id,
+        ]);
+
 
         return response(new ShiftResource($shift->fresh()), 201);
     }
@@ -166,6 +168,7 @@ class ShiftController extends Controller
         $user->verified = now();
         $user->verified_by = $request->user()->id;
         $user->save();
+
 
         return response(new ShiftResource($shift->fresh()), 201);
     }
