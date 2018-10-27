@@ -21,15 +21,19 @@ class UserShallow extends JsonResource
         ];
 
         if ($request->user()->is_super) {
-            if ($this->pivot->checkin) {
-                $rtn['checkin'] = $this->pivot->checkin ?? false;
-                $rtn['checkin_by'] = $this->checkin_by ?? null;
-            }
+                $rtn['checkin'] = $this->whenPivotLoaded('user_shift', function() {
+                    return $this->pivot->checkin ?? false;
+                });
+                $rtn['checkin_by'] = $this->whenPivotLoaded('user_shift', function() {
+                    return $this->pivot->checkin_by ?? null;
+                });
 
-            if ($this->pivot->verified) {
-                $rtn['verified'] = $this->pivot->verified ?? false;
-                $rtn['verified_by'] = $this->verified_by ?? null;
-            }
+                $rtn['verified'] = $this->whenPivotLoaded('user_shift', function() {
+                    return $this->pivot->verified ?? false;
+                });
+                $rtn['verified_by'] = $this->whenPivotLoaded('user_shift', function() {
+                    return $this->pivot->verified_by ?? null;
+                });
 
             $rtn['hours'] = (float)$this->shifts->reduce(function($carry, $item) {
                 $date1 = new \DateTime($item->start_time);
