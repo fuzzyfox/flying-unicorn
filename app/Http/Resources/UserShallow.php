@@ -30,6 +30,21 @@ class UserShallow extends JsonResource
                 $rtn['verified'] = $this->verified ?? false;
                 $rtn['verified_by'] = $this->verified_by ?? null;
             }
+
+            $rtn['hours'] = (float)$this->shifts->reduce(function($carry, $item) {
+                $date1 = new \DateTime($item->start_time);
+                $date2 = new \DateTime($item->end_time);
+
+                $diff = $date2->diff($date1);
+
+                $hours = $diff->h;
+                $hours = $hours + ($diff->days*24);
+                return $carry + $hours;
+            }, 0);
+
+            $rtn['claimed'] = (bool)$this->password;
+
+            $rtn['claim_code'] = (string)$this->claim_code;
         }
 
         // $this->mergeAdditionalFields($request, $rtn, 'users');
