@@ -36,7 +36,50 @@ class Shift extends JsonResource
             'start_time'  => (string)$this->start_time,
             'end_time'    => (string)$this->end_time,
 
-            'users'       => UserShallowResource::collection($this->users),
+            'users'       => $this->users->map(function($user) {
+                $rtn = [
+                    'id'         => (string)$user->id,
+                    'name'       => (string)$user->name,
+                    'username'   => (string)$user->username,
+                    'is_super'   => (bool)$user->is_super,
+                ];
+
+                if ($request->user()->is_super) {
+                    if ($user->pivot->checkin) {
+                        $rtn['checkin'] = $user->pivot->checkin ?? false;
+                        $rtn['checkin_by'] = $user->checkin_by ?? null;
+                    }
+
+                    if ($user->pivot->verified) {
+                        $rtn['verified'] = $user->pivot->verified ?? false;
+                        $rtn['verified_by'] = $user->verified_by ?? null;
+                    }
+
+                    $rtn['hours'] = (float)$user->shifts->reduce(function($carry, $item) {
+                        $date1 = new \DateTime($item->start_time);
+                        $date2 = new \DateTime($item->end_time);
+
+                        $diff = $date2->diff($date1);
+
+                        $hours = $diff->h;
+                        $hours = $hours + ($diff->days*24);
+                        return $carry + $hours;
+                    }, 0);
+
+                    $rtn['claimed'] = (bool)$user->password;
+
+                    $rtn['claim_code'] = (string)$user->claim_code;
+                }
+
+                // $user->mergeAdditionalFields($request, $rtn, 'users');
+
+                $rtn = array_merge($rtn, [
+                    'created_at' => (string)$user->created_at,
+                    'updated_at' => (string)$user->updated_at,
+                ]);
+
+                return $rtn;
+            }),
             'teams'       => TeamShallowResource::collection($this->teams),
         ];
 
