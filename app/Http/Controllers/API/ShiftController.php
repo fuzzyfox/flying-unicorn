@@ -149,7 +149,7 @@ class ShiftController extends Controller
             return response('User not found', 404);
         }
 
-        $shuft->users()->updateExistingPivot($request->input('user_id'), [
+        $shift->users()->updateExistingPivot($request->input('user_id'), [
             'checkin' => now(),
             'checkin_by' => $request->user()->id,
         ]);
