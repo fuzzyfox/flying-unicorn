@@ -81,10 +81,6 @@
 
                     <hr>
 
-                    <ul>
-                        <li v-for="user in activeShift.users" @click="onUserClick(user)">@{{user.name}}</li>
-                    </ul>
-
                     <table class="table table-stripped">
                         <thead>
                             <tr>
